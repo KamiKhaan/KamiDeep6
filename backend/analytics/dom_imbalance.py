@@ -6,14 +6,12 @@ Imbalance formula: (bid_qty - ask_qty) / (bid_qty + ask_qty)
 """
 from __future__ import annotations
 
-from typing import Tuple
-
 from backend.models import DOMSnapshot
 
 COB_LEVELS = 3   # levels used for centre-of-book calculation
 
 
-def calculate(dom: DOMSnapshot) -> Tuple[float, float]:
+def calculate(dom: DOMSnapshot) -> tuple[float, float]:
     """Return (cob_imbalance, dom_imbalance) each in [-1, +1]."""
     cob_bids = sum(lvl.bid_size for lvl in dom.bids[:COB_LEVELS])
     cob_asks = sum(lvl.ask_size for lvl in dom.asks[:COB_LEVELS])

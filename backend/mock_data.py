@@ -9,7 +9,6 @@ import math
 import random
 import time
 from collections import deque
-from typing import Deque, List
 
 from backend.models import DOMSnapshot, PriceLevel, Trade
 
@@ -31,8 +30,8 @@ class MockMarket:
         self._trend_bias = 0.0          # -1..+1 drifts price slowly
         self._regime_counter = 0
 
-        self.trades: Deque[Trade] = deque(maxlen=TRADE_HISTORY)
-        self.dom_history: Deque[DOMSnapshot] = deque(maxlen=DOM_HISTORY)
+        self.trades: deque[Trade] = deque(maxlen=TRADE_HISTORY)
+        self.dom_history: deque[DOMSnapshot] = deque(maxlen=DOM_HISTORY)
 
         # Iceberg / absorption state
         self._iceberg_price: float | None = None
@@ -49,7 +48,7 @@ class MockMarket:
 
     # ── Public API ────────────────────────────────────────────────────────────
 
-    def update(self) -> tuple[DOMSnapshot, List[Trade]]:
+    def update(self) -> tuple[DOMSnapshot, list[Trade]]:
         """Advance the market by one simulation step and return current state."""
         self._tick()
         snap = self._build_dom()
@@ -129,8 +128,8 @@ class MockMarket:
         )
 
     def _build_dom(self) -> DOMSnapshot:
-        bids: List[PriceLevel] = []
-        asks: List[PriceLevel] = []
+        bids: list[PriceLevel] = []
+        asks: list[PriceLevel] = []
         best_bid = round((self._mid - TICK_SIZE) / TICK_SIZE) * TICK_SIZE
         best_ask = round((self._mid + TICK_SIZE) / TICK_SIZE) * TICK_SIZE
 

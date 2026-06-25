@@ -23,7 +23,7 @@ import asyncio
 import json
 import logging
 import time
-from typing import List, Optional, Tuple
+from typing import Optional
 
 from backend.config import Settings
 from backend.models import DOMSnapshot, PriceLevel, Trade
@@ -39,7 +39,7 @@ class BookmapClient:
         self._ws: Optional[object] = None
         self._connected = False
         self._dom: Optional[DOMSnapshot] = None
-        self._trades: List[Trade] = []
+        self._trades: list[Trade] = []
 
     async def connect(self) -> None:
         """Open WebSocket connection and subscribe to GCQ6 market data."""
@@ -68,7 +68,7 @@ class BookmapClient:
             await self._ws.close()  # type: ignore[attr-defined]
         self._connected = False
 
-    async def get_snapshot(self) -> Tuple[Optional[DOMSnapshot], List[Trade]]:
+    async def get_snapshot(self) -> tuple[Optional[DOMSnapshot], list[Trade]]:
         """Return the most recent DOM snapshot and accumulated trade tape."""
         trades = list(self._trades)
         self._trades.clear()

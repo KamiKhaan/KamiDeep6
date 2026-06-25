@@ -12,8 +12,6 @@ reflect the relative reliability / importance of each signal component.
 """
 from __future__ import annotations
 
-from typing import List, Tuple
-
 LONG_THRESHOLD = 0.20   # minimum |score| to commit to a directional trade
 
 # Factor weights (must sum to 1.0 for confidence normalisation)
@@ -43,11 +41,11 @@ def generate(
     current_price: float,
     support: float,
     resistance: float,
-) -> Tuple[str, float, List[str]]:
+) -> tuple[str, float, list[str]]:
     """Return (signal, confidence_pct, reasons)."""
 
     scores: dict[str, float] = {}
-    reasons: List[str] = []
+    reasons: list[str] = []
 
     # DOM imbalance: positive → buy pressure
     scores["dom_imbalance"] = float(dom_imbalance)

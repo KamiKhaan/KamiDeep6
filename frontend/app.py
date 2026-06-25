@@ -101,7 +101,7 @@ def render(data: dict[str, Any], cfg: dict[str, Any]) -> None:
     st.title(f"📈 GCQ6 — Gold Futures Aug-2026   {mode_badge}")
     ts = data.get("timestamp", time.time())
     st.caption(
-        f"Last update: {time.strftime('%H:%M:%S', time.localtime(ts))} UTC  |  "
+        f"Last update: {time.strftime('%H:%M:%S', time.gmtime(ts))} UTC  |  "
         f"Symbol: {data.get('symbol', 'GCQ6')}  |  Exchange: {cfg.get('exchange', 'CME')}"
     )
 

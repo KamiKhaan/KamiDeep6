@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
@@ -19,8 +18,8 @@ class Trade(BaseModel):
 
 class DOMSnapshot(BaseModel):
     """Full depth-of-market snapshot (up to N levels each side)."""
-    bids: List[PriceLevel]
-    asks: List[PriceLevel]
+    bids: list[PriceLevel]
+    asks: list[PriceLevel]
     timestamp: float
 
 
@@ -58,15 +57,15 @@ class MarketMetrics(BaseModel):
 
     # ── Iceberg detection ─────────────────────────────────────────────────────
     iceberg_detected: bool
-    iceberg_side: Optional[str] = None   # "buy" | "sell" | None
-    iceberg_price: Optional[float] = None
+    iceberg_side: str | None = None   # "buy" | "sell" | None
+    iceberg_price: float | None = None
 
     # ── Absorption ────────────────────────────────────────────────────────────
     absorption_detected: bool
-    absorption_side: Optional[str] = None   # "buy" | "sell" | None
-    absorption_price: Optional[float] = None
+    absorption_side: str | None = None   # "buy" | "sell" | None
+    absorption_price: float | None = None
 
     # ── Final signal ──────────────────────────────────────────────────────────
     signal: str              # "LONG" | "SHORT" | "NO_TRADE"
     confidence: float        # 0–100 %
-    signal_reasons: List[str]
+    signal_reasons: list[str]

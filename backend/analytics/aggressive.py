@@ -9,7 +9,6 @@ Similarly for aggressive sellers hitting the bid.
 from __future__ import annotations
 
 import time
-from typing import List, Tuple
 
 from backend.models import Trade
 
@@ -17,7 +16,7 @@ WINDOW_SECONDS = 5.0   # rolling window
 SIZE_THRESHOLD = 30    # contracts per single trade to qualify
 
 
-def detect(trades: List[Trade]) -> Tuple[bool, bool, int, int]:
+def detect(trades: list[Trade]) -> tuple[bool, bool, int, int]:
     """Return (aggressive_buyer, aggressive_seller, buy_vol, sell_vol).
 
     Only trades within the last WINDOW_SECONDS are considered.

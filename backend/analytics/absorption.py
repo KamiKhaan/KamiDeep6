@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import time
 from collections import defaultdict
-from typing import List, Optional, Tuple
+from typing import Optional
 
 from backend.models import DOMSnapshot, Trade
 
@@ -23,10 +23,10 @@ PRICE_MOVE_LIMIT = 0.30        # max price movement allowed (in $) for absorptio
 
 
 def detect(
-    trades: List[Trade],
-    dom_history: List[DOMSnapshot],
+    trades: list[Trade],
+    dom_history: list[DOMSnapshot],
     current_price: float,
-) -> Tuple[bool, Optional[str], Optional[float]]:
+) -> tuple[bool, Optional[str], Optional[float]]:
     """Return (detected, side, price)."""
     now = time.time()
     cutoff = now - WINDOW_SECONDS

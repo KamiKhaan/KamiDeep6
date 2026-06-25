@@ -7,7 +7,7 @@ the current price).
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import List, Tuple
+from typing import Tuple
 
 from backend.models import Trade
 
@@ -15,7 +15,7 @@ TICK_SIZE = 0.10
 LOOKBACK = 300  # trades
 
 
-def detect(trades: List[Trade], current_price: float) -> Tuple[float, float]:
+def detect(trades: list[Trade], current_price: float) -> tuple[float, float]:
     """Return (support, resistance) price levels."""
     if not trades:
         return current_price - 2.0, current_price + 2.0

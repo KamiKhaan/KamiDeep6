@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import time
 from collections import defaultdict
-from typing import List, Optional, Tuple
+from typing import Optional
 
 from backend.models import Trade
 
@@ -25,8 +25,8 @@ MAX_AVG_SIZE = 8
 
 
 def detect(
-    trades: List[Trade],
-) -> Tuple[bool, Optional[str], Optional[float]]:
+    trades: list[Trade],
+) -> tuple[bool, Optional[str], Optional[float]]:
     """Return (detected, side, price)."""
     now = time.time()
     cutoff = now - WINDOW_SECONDS

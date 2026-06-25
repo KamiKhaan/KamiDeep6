@@ -1,9 +1,6 @@
 """Trend detection using dual EMA crossover on the trade price series."""
 from __future__ import annotations
 
-from collections import deque
-from typing import List, Tuple
-
 from backend.models import Trade
 
 FAST_PERIOD = 9
@@ -15,7 +12,7 @@ _ema_fast: float | None = None
 _ema_slow: float | None = None
 
 
-def update(trades: List[Trade]) -> Tuple[str, float, float]:
+def update(trades: list[Trade]) -> tuple[str, float, float]:
     """Return (trend, ema_fast, ema_slow).
 
     trend is "UP", "DOWN", or "NEUTRAL".
